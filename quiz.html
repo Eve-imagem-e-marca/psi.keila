@@ -41,6 +41,6 @@ function inicio(){T.innerHTML='<h1>Termômetro do bem-estar</h1><p class="sub">6
 function per(){var q=Q[i];T.innerHTML='<div class="bar"><i style="width:'+(i/Q.length*100)+'%"></i></div><h2>'+q.t+'</h2>'+q.o.map(function(o,k){return'<button class="opt" data-k="'+k+'">'+o+'</button>'}).join("");
  T.onclick=function(e){var b=e.target.closest(".opt");if(!b)return;A[i]=+b.getAttribute("data-k");i++;if(i<Q.length)per();else fim()}}
 function fim(){var s=A.reduce(function(a,b){return a+b},0),r=s<=3?R[0]:s<=7?R[1]:R[2];T.onclick=null;
- var l="https://wa.me/"+WH+"?text="+encodeURIComponent("Oi, Keila! Fiz o termômetro do bem-estar no seu app ("+r.n+") e quero conversar.");
- T.innerHTML='<h1>'+r.n+'</h1><p>'+r.d+'</p><div class="card"><b>Para hoje</b><ul>'+r.dicas.map(function(x){return'<li>'+x+'</li>'}).join("")+'</ul></div><a class="btn" href="'+l+'">Conversar com a Keila</a><button class="btn sec" id="re">Refazer</button>';document.getElementById("re").onclick=inicio}
+ var l="https://wa.me/"+WH+"?text="+encodeURIComponent("Oi, Dra. Keila! Fiz o termômetro do bem-estar no seu app ("+r.n+") e quero conversar.");
+ T.innerHTML='<h1>'+r.n+'</h1><p>'+r.d+'</p><div class="card"><b>Para hoje</b><ul>'+r.dicas.map(function(x){return'<li>'+x+'</li>'}).join("")+'</ul></div><a class="btn" href="'+l+'">Conversar com a Dra. Keila</a><button class="btn sec" id="re">Refazer</button>';document.getElementById("re").onclick=inicio}
 inicio();</script></body></html>
