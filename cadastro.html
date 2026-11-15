@@ -22,18 +22,18 @@ label{display:block;font-weight:500;margin:0 0 6px}
 footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}</style></head><body><main>
 <a class="back" href="index.html">← Voltar</a>
 <p class="top">Keila Dias Magalhães · Psicóloga e Neuropsicóloga</p>
-<h1>Fique perto da Keila</h1>
-<p class="sub">Deixe o seu contato com confiança. Ele fica guardado com cuidado, como uma pérola na concha. Leva 1 minuto.</p>
+<h1>Agende uma consulta</h1>
+<p class="sub">Deixe o seu contato e a Keila fala com você para agendar uma avaliação ou consulta. Ele fica guardado com cuidado, como uma pérola na concha.</p>
 <form id="f" novalidate>
  <label for="n">Seu nome</label><input id="n" type="text" autocomplete="name">
  <label for="w">Seu WhatsApp (com DDD)</label><input id="w" type="text" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000">
  <label for="em">Seu e-mail (opcional)</label><input id="em" type="email" autocomplete="email" autocapitalize="none" placeholder="voce@email.com">
  <label for="e">Seu Instagram (opcional)</label><input id="e" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" placeholder="@seuperfil">
- <label>O que você quer receber? (marque quantas quiser)</label>
+ <label>O que você procura? (marque quantas quiser)</label>
  <div id="ints"></div>
  <input class="hp" id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
  <label class="consent" for="c"><input id="c" type="checkbox"><span>Autorizo a Keila Dias Magalhães (@psi.keiladiasmagalhaes) a entrar em contato comigo por WhatsApp, e-mail ou Instagram, para enviar dicas e falar dos seus serviços. Posso pedir para sair a qualquer momento.</span></label>
- <button class="btn" id="go" type="submit">Quero receber</button>
+ <button class="btn" id="go" type="submit">Enviar meu contato</button>
  <p class="err" id="err"></p>
 </form>
 <div id="fim" style="display:none"></div>
@@ -72,9 +72,9 @@ $("f").onsubmit=function(ev){
   var b=new URLSearchParams();b.append(CONFIG.campos.nome,n);if(ig)b.append(CONFIG.campos.insta,ig);b.append(CONFIG.campos.whats,w);ints.forEach(function(x){b.append(CONFIG.campos.interesse,x)});
   fetch(CONFIG.formUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:b.toString()})
   .then(function(){fim('<div class="ok"><p style="font:italic 400 26px Georgia,serif;color:#5A3A28;margin:0 0 6px">Recebemos o seu contato</p><p style="margin:0">Obrigada, '+esc(n.split(" ")[0])+'! A '+esc(CONFIG.nutri)+' vai falar com você em breve.</p></div><a class="btn" href="index.html">Voltar para o início</a>')})
-  .catch(function(){btn.disabled=false;btn.textContent="Quero receber";$("err").textContent="Não deu certo agora. Verifique a internet e tente de novo."});
+  .catch(function(){btn.disabled=false;btn.textContent="Enviar meu contato";$("err").textContent="Não deu certo agora. Verifique a internet e tente de novo."});
  }else{
-  var msg="Oi, "+CONFIG.nutri+"! Quero receber dicas e novidades.\nNome: "+n+"\nWhatsApp: "+w+(em?"\nE-mail: "+em:"")+(ig?"\nInstagram: "+ig:"")+"\nInteresse: "+ints.join(", ")+"\nAutorizo o contato por WhatsApp ou Instagram.";
+  var msg="Oi, "+CONFIG.nutri+"! Gostaria de agendar uma avaliação ou consulta.\nNome: "+n+"\nWhatsApp: "+w+(em?"\nE-mail: "+em:"")+(ig?"\nInstagram: "+ig:"")+"\nInteresse: "+ints.join(", ")+"\nAutorizo o contato por WhatsApp ou Instagram.";
   fim('<div class="ok"><p style="font:italic 400 26px Georgia,serif;color:#5A3A28;margin:0 0 6px">Falta só um toque</p><p style="margin:0">Toque abaixo para enviar o seu contato para a '+esc(CONFIG.nutri)+' pelo WhatsApp.</p></div><a class="btn" href="https://wa.me/'+CONFIG.whats+'?text='+encodeURIComponent(msg)+'">Enviar pelo WhatsApp</a>');
  }
 };
