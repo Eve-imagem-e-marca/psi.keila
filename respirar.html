@@ -1,86 +1,45 @@
-        <!doctype html>
-        <html lang="pt-BR"><head><meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1"><title>Respirar · Keila Dias Magalhães</title>
-        <link rel="manifest" href="manifest.webmanifest">
-        <link rel="apple-touch-icon" href="icon-180.png">
-        <meta name="theme-color" content="#5A3A28">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="Keila Dias">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default"><style>
-        :root{--c:#B5651D;--c2:#F7E6CF;--bg:#FBF6EE;--ink:#3A2A22;--soft:#7A6A60;--deep:#5A3A28}
-        *{box-sizing:border-box}
-        body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 system-ui,-apple-system,sans-serif}
-        main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
-        h1{font:italic 400 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
-        p{margin:0 0 14px}.sub{color:var(--soft)}
-        .top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
-        .btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:500;font-size:18px;font-family:inherit;cursor:pointer;margin-top:10px;padding:16px}
-        .aviso{font-size:15px;color:var(--soft);margin-top:14px}
-        .back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
-        footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}
-        b{font-weight:500}
-        .circ{width:190px;height:190px;border-radius:50%;background:var(--c2);border:2px solid var(--c);margin:26px auto;display:flex;align-items:center;justify-content:center;text-align:center;font:italic 400 24px Georgia,serif;color:var(--deep);transition:transform 4s ease-in-out}
-        .som{margin:14px 0 4px}.som p{margin:0 0 8px;font-weight:500;color:var(--deep)}
-        .som div{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-        .chip{min-height:48px;padding:10px 14px;border-radius:99px;border:1.5px solid #5A3A28;background:#fff;color:#5A3A28;font:inherit;font-size:17px;cursor:pointer}
-        .chip.on{background:#5A3A28;color:#fff}
-        .som small{display:block;color:var(--soft);font-size:15px;margin-top:8px}
-        </style>
-        </head>
-        <body>
-        <main>
-        <a class="back" href="index.html">← Voltar</a><p class="top">Keila Dias Magalhães · Psicóloga e Neuropsicóloga</p>
-        <h1>Respirar por 1 minuto</h1><p class="sub">Inspire pelo nariz enquanto o círculo cresce, e solte devagar pela boca enquanto ele diminui. Faça 6 vezes.</p>
-        <div class="som"><p>Som para relaxar</p>
-        <div id="sons"><button class="chip" data-s="cachoeira">Cachoeira</button>
-        <button class="chip" data-s="chuva">Chuva</button>
-        <button class="chip" data-s="mar">Mar</button>
-        <button class="chip on" data-s="off">Sem som</button>
-        </div>
-        <small>Dica: use fones de ouvido e tire o celular do modo silencioso.</small>
-        </div>
-        <div class="circ" id="c">Pronta?</div>
-        <button class="btn" id="go">Começar</button>
-        <p id="fimm"></p>
-        <p class="aviso">Exercício de relaxamento geral. Conteúdo de orientação geral. Não é diagnóstico e não substitui atendimento psicológico. Se você estiver em sofrimento intenso, procure ajuda agora: CVV, ligue 188 (24 horas, gratuito).</p>
-        <footer>Feito por Eve, imagem e marca<br>Keila Dias Magalhães · Psicóloga e Neuropsicóloga</</main> </<script>var c=document.getElementById("c"),go=document.getElementById("go"),n=0,tm=[],on=false;
-        function lim(){tm.forEach(clearTimeout);tm=[]}
-        function parar(t){on=false;lim();c.style.transition="transform 1s";c.style.transform="scale(1)";c.textContent="Pronta?";go.textContent="Começar de novo";if(t)document.getElementById("fimm").innerHTML=t}
-        function ciclo(){if(!on)return;if(n>=6){parar("<b>Muito bem.</b> Perceba como você está agora. Vale repetir quando precisar.");c.textContent="Pronto";return}
-         n++;c.style.transition="transform 4s ease-in-out";c.style.transform="scale(1.35)";c.textContent="Inspire";
-         tm.push(setTimeout(function(){if(!on)return;c.style.transition="transform 6s ease-in-out";c.style.transform="scale(1)";c.textContent="Solte devagar"},4000));
-         tm.push(setTimeout(ciclo,10000))}
-        go.onclick=function(){if(on){parar("");return}on=true;n=0;document.getElementById("fimm").innerHTML="";go.textContent="Parar";ciclo()}
-        var AC=null,nodes=[],mst=null;
-        function ruido(){var b=AC.createBuffer(1,AC.sampleRate*4,AC.sampleRate),d=b.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;var s=AC.createBufferSource();s.buffer=b;s.loop=true;s.start();return s}
-        function filtro(t,f,q){var x=AC.createBiquadFilter();x.type=t;x.frequency.value=f;if(q)x.Q.value=q;return x}
-        function ganho(v){var g=AC.createGain();g.gain.value=v;return g}
-        function lfo(freq,prof,alvo){var o=AC.createOscillator(),g=AC.createGain();o.frequency.value=freq;g.gain.value=prof;o.connect(g);g.connect(alvo);o.start();nodes.push(o)}
-        function pararSom(){if(mst){var m=mst,t=AC.currentTime;m.gain.cancelScheduledValues(t);m.gain.setValueAtTime(m.gain.value,t);m.gain.linearRampToValueAtTime(0,t+1);setTimeout(function(){try{m.disconnect()}catch(e){}},1100);mst=null}
-         var n=nodes;nodes=[];setTimeout(function(){n.forEach(function(o){try{o.stop()}catch(e){}})},1100)}
-        function tocar(tipo){
-         if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return;AC=new C()}
-         if(AC.state==="suspended")AC.resume();
-         pararSom();if(tipo==="off")return;
-         var m=ganho(0);m.connect(AC.destination);mst=m;
-         var n1=ruido();nodes.push(n1);
-         if(tipo==="cachoeira"){
-          var a=filtro("highpass",350),b=filtro("lowpass",7000),g=ganho(.32);n1.connect(a);a.connect(b);b.connect(g);g.connect(m);
-          var n2=ruido();nodes.push(n2);var c=filtro("bandpass",1400,.6),g2=ganho(.18);n2.connect(c);c.connect(g2);g2.connect(m);lfo(.17,.07,g2.gain);
-          var n3=ruido();nodes.push(n3);var d=filtro("lowpass",380),g3=ganho(.55);n3.connect(d);d.connect(g3);g3.connect(m)}
-         else if(tipo==="chuva"){
-          var a=filtro("highpass",900),b=filtro("lowpass",9000),g=ganho(.3);n1.connect(a);a.connect(b);b.connect(g);g.connect(m);
-          var n2=ruido();nodes.push(n2);var c=filtro("bandpass",3200,.4),g2=ganho(.12);n2.connect(c);c.connect(g2);g2.connect(m);lfo(.3,.05,g2.gain);
-          var n3=ruido();nodes.push(n3);var d=filtro("lowpass",500),g3=ganho(.2);n3.connect(d);d.connect(g3);g3.connect(m)}
-         else if(tipo==="mar"){
-          var a=filtro("lowpass",900),g=ganho(.3);n1.connect(a);a.connect(g);g.connect(m);lfo(.1,.25,g.gain);
-          var n2=ruido();nodes.push(n2);var b=filtro("highpass",1800),c=filtro("lowpass",6000),g2=ganho(.05);n2.connect(b);b.connect(c);c.connect(g2);g2.connect(m);lfo(.1,.04,g2.gain)}
-         var t=AC.currentTime;m.gain.setValueAtTime(0,t);m.gain.linearRampToValueAtTime(.7,t+2)}
-        document.getElementById("sons").onclick=function(e){var b=e.target.closest("button");if(!b)return;var l=this.querySelectorAll("button");for(var i=0;i<l.length;i++)l[i].className="chip";b.className="chip on";tocar(b.getAttribute("data-s"))};
-        document.addEventListener("visibilitychange",function(){if(document.hidden&&AC&&AC.state==="running")AC.suspend();else if(!document.hidden&&AC&&mst)AC.resume()});
-        </script></body></html>
-        
-        
-        
-        
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Respirar · Keila</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+body{margin:0;background:#FBF6EE;color:#3A2A22;font:18px/1.55 system-ui,sans-serif}
+main{max-width:560px;margin:auto;padding:22px 18px 40px}
+h1{font:italic 400 30px Georgia,serif;color:#5A3A28;margin:10px 0}
+p{margin:0 0 14px}.s,small,.a{color:#7A6A60}.a,small{font-size:15px}
+.t{font:italic 17px Georgia,serif;text-align:center}
+.k{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:#B5651D;color:#fff;font:500 18px system-ui;margin-top:10px}
+.o{width:190px;height:190px;border-radius:50%;background:#F7E6CF;border:2px solid #B5651D;margin:26px auto;display:flex;align-items:center;justify-content:center;font:italic 24px Georgia,serif;color:#5A3A28;transition:transform 4s ease-in-out}
+#sons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:8px 0}
+#sons button{min-height:48px;border-radius:99px;border:1.5px solid #5A3A28;background:#fff;color:#5A3A28;font:17px system-ui}
+#sons .on{background:#5A3A28;color:#fff}
+</style></head><body><main>
+<a href="index.html" style="color:#7A6A60;text-decoration:none">← Voltar</a>
+<p class="t">Keila Dias Magalhães · Psicóloga e Neuropsicóloga</p>
+<h1>Respirar por 1 minuto</h1>
+<p class="s">Inspire pelo nariz enquanto o círculo cresce, e solte devagar pela boca enquanto ele diminui. Faça 6 vezes.</p>
+<p style="font-weight:500;margin:0">Som para relaxar</p>
+<div id="sons"><button data-s="cachoeira">Cachoeira</button><button data-s="mar">Mar</button><button class="on" data-s="off">Sem som</button></div>
+<small>Dica: use fones e tire o celular do modo silencioso.</small>
+<div class="o" id="c">Pronta?</div>
+<button class="k" id="go">Começar</button>
+<p id="fim"></p>
+<p class="a">Orientação geral, não substitui atendimento psicológico. Em sofrimento intenso, ligue 188 (CVV).</p>
+<p class="a">Feito por Eve, imagem e marca</p>
+</main><script>
+var c=document.getElementById("c"),go=document.getElementById("go"),n=0,tm=[],on=0,AC,B,ns=[],M;
+function P(t){on=0;tm.forEach(clearTimeout);c.style.transform="scale(1)";c.textContent="Pronta?";go.textContent="Começar de novo";document.getElementById("fim").innerHTML=t||""}
+function L(){if(!on)return;if(n>=6){P("<b>Muito bem.</b> Perceba como você está agora.");c.textContent="Pronto";return}
+n++;c.style.transition="transform 4s";c.style.transform="scale(1.35)";c.textContent="Inspire";
+tm=[setTimeout(function(){c.style.transition="transform 6s";c.style.transform="scale(1)";c.textContent="Solte devagar"},4000),setTimeout(L,10000)]}
+go.onclick=function(){if(on){P();return}on=1;n=0;go.textContent="Parar";document.getElementById("fim").innerHTML="";L()};
+function R(t,f,q,g,l){var s=AC.createBufferSource();s.buffer=B;s.loop=true;s.start();ns.push(s);var x=AC.createBiquadFilter();x.type=t;x.frequency.value=f;x.Q.value=q;var v=AC.createGain();v.gain.value=g;s.connect(x);x.connect(v);v.connect(M);if(l){var o=AC.createOscillator(),d=AC.createGain();o.frequency.value=l;d.gain.value=g*.8;o.connect(d);d.connect(v.gain);o.start();ns.push(o)}}
+function S(k){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();B=AC.createBuffer(1,AC.sampleRate*4,AC.sampleRate);var d=B.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1}
+AC.resume();if(M){var m=M,o=ns;m.gain.linearRampToValueAtTime(0,AC.currentTime+1);setTimeout(function(){o.forEach(function(x){try{x.stop()}catch(e){}});m.disconnect()},1100);M=0;ns=[]}
+if(k=="off")return;M=AC.createGain();M.gain.value=0;M.connect(AC.destination);
+if(k=="cachoeira"){R("bandpass",2500,.3,.5);R("lowpass",380,1,.5);R("bandpass",1400,.6,.15,.17)}
+if(k=="mar"){R("lowpass",900,1,.3,.1);R("highpass",1800,1,.05)}
+M.gain.linearRampToValueAtTime(.7,AC.currentTime+2)}
+document.getElementById("sons").onclick=function(e){var b=e.target;if(b.tagName!="BUTTON")return;var l=this.children;for(var i=0;i<3;i++)l[i].className="";b.className="on";S(b.getAttribute("data-s"))};
+</script></body></html>
