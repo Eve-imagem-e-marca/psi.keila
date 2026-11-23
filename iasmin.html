@@ -2,7 +2,7 @@
 .head{display:flex;gap:12px;align-items:center;margin:4px 0 10px}.av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--c);color:#FBF1E2;font:italic 400 28px/52px Georgia,serif;text-align:center}.head b{display:block;color:var(--deep)}.head small{color:var(--soft);font-size:15px}
 #chat{display:flex;flex-direction:column;gap:10px;margin:8px 0 14px}.m{max-width:88%;padding:12px 15px;border-radius:18px;font-size:18px;line-height:1.5;white-space:pre-line}.m.i{align-self:flex-start;background:#fff;border:1px solid var(--line);border-top-left-radius:6px}.m.u{align-self:flex-end;background:var(--c2);border:1px solid #EAD3B0;border-top-right-radius:6px;color:var(--deep)}.m.t{color:var(--soft);letter-spacing:.2em}
 details{margin:0 0 10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 14px}summary{font-weight:500;color:var(--deep);cursor:pointer;padding:14px 0;font-size:19px}.q{display:block;width:100%;text-align:left;min-height:52px;padding:12px 14px;margin:0 0 10px;border-radius:14px;border:2px solid var(--line);background:#FBF6EE;font:inherit;font-size:17px;color:inherit;cursor:pointer}.q:active{border-color:var(--c);background:var(--c2)}.q.feita{opacity:.55}
-.aviso{font-size:15px;color:var(--soft);margin-top:14px}.sos{background:#fff;border:1.5px solid var(--c);border-radius:16px;padding:14px 16px;margin-top:16px;font-size:16px}footer{padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}</style></head><body><main>
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}.sos{background:#fff;border:1.5px solid var(--c);border-radius:16px;padding:14px 16px;margin-top:16px;font-size:16px}footer{padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}</style><script defer src="contador.js"></script></head><body><main>
 <a class="back" href="index.html">← Voltar</a><p class="top">A Fala Transforma · Keila Dias Magalhães</p>
 <div class="head"><div class="av">I</div><div><b>Iasmin</b><small>Assistente virtual da Dra. Keila</small></div></div>
 <h1>Dúvidas sobre fazer terapia</h1>
@@ -19,11 +19,15 @@ var G=[
 {t:"Começando",l:[
 {q:"Como sei se preciso de terapia?",a:"Não precisa estar em crise. Muita gente procura quando quer se entender melhor ou quando algo está pesando: ansiedade, mudanças, relações, cansaço emocional.\n\nSe isso ocupa seus pensamentos com frequência, já vale uma conversa. Quem avalia com você é a Dra. Keila."},
 {q:"Posso ser atendida online e presencial?",a:"Sim. A Dra. Keila atende online e também presencialmente, em São Paulo. O presencial é só com hora marcada.\n\nVocê escolhe o formato que cabe melhor na sua rotina e combina com ela."},
-{q:"Ela atende adolescentes?",a:"Sim. A Dra. Keila atende adultos e adolescentes."},
+{q:"Como funciona a sessão online?",a:"No horário agendado, a Dra. Keila envia o link para vocês fazerem a sessão.\n\nPara ficar tudo bem:\n• escolha um local privado\n• tenha uma boa conexão de internet\n• use fones de ouvido"},
+{q:"Ela atende adolescentes?",a:"Sim. A Dra. Keila atende adultos e adolescentes.\n\nNo caso de menores de idade, um responsável precisa entrar em contato com ela."},
+{q:"Quais serviços a Dra. Keila oferece?",a:"• Terapia individual\n• Terapia de casal\n• Avaliação neuropsicológica\n• Palestras\n\nPara pedir um horário ou saber mais, é só falar com ela pelo botão no fim da página."},
+{q:"Com o que a Dra. Keila trabalha?",a:"Com atendimento psicológico individual, focado em autoconhecimento, ansiedade, depressão, mudança de comportamento, comunicação e relacionamentos, entre outros temas.\n\nO atendimento é online ou presencial."},
+{q:"Quanto tempo dura cada sessão?",a:"Na terapia individual, cada atendimento dura 50 minutos, online ou presencial.\n\nPara terapia de casal, avaliação neuropsicológica e palestras, a Dra. Keila combina os detalhes com você."},
 {q:"Como é a primeira consulta?",a:"Em geral, é uma conversa para a Dra. Keila te conhecer e entender o que te trouxe até ela. Você fala no seu ritmo, sem obrigação de contar tudo de uma vez."},
 {q:"Quanto tempo dura a terapia?",a:"Não existe um tempo certo. Depende de cada pessoa e do que ela busca. A Dra. Keila conversa com você sobre isso ao longo do caminho."},
-{q:"Aceita convênio?",a:"Essa informação você combina direto com a Dra. Keila, pelo WhatsApp. É só tocar no botão no fim da página."},
-{q:"Posso pagar online?",a:"As formas de pagamento você combina direto com a Dra. Keila, pelo WhatsApp. É só tocar no botão no fim da página."},
+{q:"Aceita convênio?",a:"A Dra. Keila atende apenas de forma particular. Ela emite nota fiscal e a documentação que o seu plano exigir, para você pedir o reembolso.\n\nVocê paga a sessão e solicita o reembolso ao seu convênio, conforme as regras do seu plano."},
+{q:"Como funciona o pagamento e a reserva?",a:"Para confirmar o agendamento e garantir a reserva do dia e do horário, o pagamento é antecipado, pelo valor integral da sessão. A reserva é efetivada depois da confirmação do pagamento.\n\nOs dados para pagar a Dra. Keila envia a você quando combinarem o horário, pelo WhatsApp."},
 {q:"Quanto custa? Como marco?",a:"Valores e horários você combina direto com a Dra. Keila, pelo WhatsApp. É só tocar no botão no fim da página."}]},
 {t:"Sigilo e segurança",l:[
 {q:"Minha conversa fica em sigilo?",a:"Sim. O sigilo é um dever ético do psicólogo: o que você conta não é compartilhado sem a sua autorização.\n\nExistem exceções muito específicas, previstas no Código de Ética, quando há risco grave à vida ou à segurança."},
