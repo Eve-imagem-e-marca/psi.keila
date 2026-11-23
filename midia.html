@@ -6,7 +6,7 @@
 <footer>Corage produtos digitais, direitos reservados.<br>Desenvolvido por @eve.imagememarca<br>Keila Dias Magalhães · Psicóloga e Neuropsicóloga</footer></main>
 <script>
 /* Para incluir um vídeo: copie uma linha e troque o "id" (o código depois de v= no link do YouTube) e o título. */
-var VIDEOS=[{id:"vbJ5bVzejZc",t:"Assistir ao vídeo"}];
+var VIDEOS=[{id:"vbJ5bVzejZc",t:"Assistir ao vídeo 1"},{id:"CUjaecjBRfg",t:"Assistir ao vídeo 2"},{id:"yug0pMJf0ZM",t:"Assistir ao vídeo 3"}];
 function pinta(lista,alvo,box){if(!lista.length)return false;var h='';lista.forEach(function(x){h+='<a class="v" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+x.id+'"><img loading="lazy" alt="'+x.t.replace(/"/g,'')+'" src="https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg"><span>'+x.t+'</span></a>'});document.getElementById(alvo).innerHTML=h;document.getElementById(box).hidden=false;return true}
 document.getElementById('vazio').hidden=pinta(VIDEOS,'lv','videos');
 </script></body></html>
